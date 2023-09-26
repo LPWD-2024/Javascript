@@ -115,15 +115,48 @@ let chaussures = [
 ];
 
 // 1. Faire une boucle sur tout le tableau et de log les chaussures une par une
+chaussures.forEach((chaussure) => {
+  console.log(chaussure);
+});
 
 // 2. Log un tableau de toutes les Nikes
+let nikes = chaussures.filter(({ marque }) => marque === 'Nike');
+console.log(nikes);
 
 // 3. Log du prix des Vans "Old Skool"
+chaussures
+  .filter(({ marque, titre }) => marque === 'Vans' && titre === 'Old Skool')
+  .forEach(({ prix }) => {
+    console.log(prix);
+  });
 
 // 4. Log un tableau de toutes les chaussures collector
+let collectors = chaussures.filter(({ collector }) => collector);
+console.log(collectors);
 
 // 5. Log couleur lacets de la vans Sk8
+let {
+  elements: { lacets },
+} = chaussures.find(({ titre }) => titre === 'Sk8');
+console.log(lacets);
 
 // 6. Changer la couleur de la vans Sk8 en violet et log la chaussure
+let index = chaussures.findIndex(({ titre }) => titre === 'Sk8');
+chaussures[index].elements.lacets = "violet"
+
+let {
+  elements: { lacets : lacets2 },
+} = chaussures.find(({ titre }) => titre === 'Sk8');
+console.log(lacets2)
 
 // 7. Plus compliqué : Log le montant total de Toutes les Nikes
+
+let total = nikes.reduce((accumulator, {prix}) => { 
+  return accumulator + prix
+}, 0)
+
+let noms = nikes.reduce((accumulator, chaussure) => { 
+  return accumulator + chaussure.titre + " "
+}, "")
+
+console.log(noms)
